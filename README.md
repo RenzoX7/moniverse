@@ -7,16 +7,16 @@ python3 -m http.server 8000
 ```
 浏览器打开 `http://localhost:8000`。
 
-## 数据源配置
-在 `app.js` 顶部的 `API_CONFIG` 中配置你的数据代理服务：
+## Cloudflare Worker
+Worker 代码在 `worker/moniverse-worker.js`，部署说明见 `worker/README.md`。
+
+部署完成后，在 `app.js` 顶部配置：
 ```js
 const API_CONFIG = {
-  apiBase: 'https://你的代理域名',
-  fxBase: 'https://你的汇率代理域名'
+  apiBase: 'https://你的-worker.workers.dev',
+  fxBase: 'https://你的-worker.workers.dev'
 };
 ```
-
-说明：GitHub Pages 是静态站点，直接请求 yfinance/AKShare 往往会被 CORS 限制。建议使用 Cloudflare Worker 或 Vercel Function 做轻量代理。
 
 ## CSV 导入导出格式
 导出文件包含三个区块：`#ACCOUNTS`、`#ASSETS`、`#TRADES`。

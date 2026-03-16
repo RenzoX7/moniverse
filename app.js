@@ -13,8 +13,8 @@ const CATEGORY_COLORS = {
 };
 
 const API_CONFIG = {
-  apiBase: '',
-  fxBase: ''
+  apiBase: 'https://white-pine-2b8e.renzo-xu.workers.dev',
+  fxBase: 'https://white-pine-2b8e.renzo-xu.workers.dev'
 };
 
 let state = loadState();
@@ -317,7 +317,7 @@ async function fetchSearch(query) {
 async function updateFxRates() {
   if (!API_CONFIG.fxBase) return;
   try {
-    const res = await fetch(`${API_CONFIG.fxBase}/latest?base=CNY`);
+  const res = await fetch(`${API_CONFIG.fxBase}/fx?base=CNY`);
     if (!res.ok) return;
     const data = await res.json();
     state.settings.fx = { CNY: 1, USD: data.rates.USD, HKD: data.rates.HKD, JPY: data.rates.JPY };
