@@ -321,9 +321,12 @@ async function updateFxRates() {
     if (!res.ok) return;
     const data = await res.json();
     state.settings.fx = { CNY: 1, USD: data.rates.USD, HKD: data.rates.HKD, JPY: data.rates.JPY };
-    document.getElementById('fx-usd').textContent = state.settings.fx.USD.toFixed(2);
-    document.getElementById('fx-hkd').textContent = state.settings.fx.HKD.toFixed(2);
-    document.getElementById('fx-jpy').textContent = state.settings.fx.JPY.toFixed(2);
+    const usdEl = document.getElementById('fx-usd');
+    const hkdEl = document.getElementById('fx-hkd');
+    const jpyEl = document.getElementById('fx-jpy');
+    if (usdEl) usdEl.textContent = state.settings.fx.USD.toFixed(2);
+    if (hkdEl) hkdEl.textContent = state.settings.fx.HKD.toFixed(2);
+    if (jpyEl) jpyEl.textContent = state.settings.fx.JPY.toFixed(2);
   } catch {}
 }
 
@@ -593,9 +596,12 @@ function syncTradeOptions() {
 
 function init() {
   document.getElementById('display-currency').value = state.settings.displayCurrency || 'CNY';
-  document.getElementById('fx-usd').textContent = (state.settings.fx?.USD || 0).toFixed(2);
-  document.getElementById('fx-hkd').textContent = (state.settings.fx?.HKD || 0).toFixed(2);
-  document.getElementById('fx-jpy').textContent = (state.settings.fx?.JPY || 0).toFixed(2);
+  const usdEl = document.getElementById('fx-usd');
+  const hkdEl = document.getElementById('fx-hkd');
+  const jpyEl = document.getElementById('fx-jpy');
+  if (usdEl) usdEl.textContent = (state.settings.fx?.USD || 0).toFixed(2);
+  if (hkdEl) hkdEl.textContent = (state.settings.fx?.HKD || 0).toFixed(2);
+  if (jpyEl) jpyEl.textContent = (state.settings.fx?.JPY || 0).toFixed(2);
   renderAll();
   bindEvents();
 }
